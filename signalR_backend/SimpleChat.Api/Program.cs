@@ -1,3 +1,4 @@
+using SimpleChat.Api.DataService;
 using SimpleChat.Api.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,6 +24,10 @@ builder.Services.AddCors(opt =>
             .AllowCredentials();
     });
 });
+
+
+//// configuring DI for SharedDb with service container
+builder.Services.AddSingleton<SharedDb>();
 
 var app = builder.Build();
 

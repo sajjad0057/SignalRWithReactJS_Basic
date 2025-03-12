@@ -1,17 +1,20 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using SimpleChat.Api.DataService;
 using SimpleChat.Api.Models;
+using StackExchange.Redis;
 using System.Text.Json;
 
 namespace SimpleChat.Api.Hubs;
 
 public class ChatHub : Hub
 {
+    private readonly IConnectionMultiplexer _redis;
     private readonly SharedDb _sharedDb;
 
-    public ChatHub(SharedDb sharedDb)
+    public ChatHub(SharedDb sharedDb, IConnectionMultiplexer redis)
     {
         _sharedDb = sharedDb;
+        _redis = redis;
     }
 
     //public async Task JoinChat(UserConnection userConnection)
@@ -28,6 +31,22 @@ public class ChatHub : Hub
     /// </summary>
     /// <param name="userConnection"></param>
     /// <returns></returns>
+    /// 
+
+
+    /// <summary>
+    ///If want to send message through redis channel,
+    ///it's need when use redisbackplane to serve message through multiple server instance.
+    /// </summary>
+    /// <param name="message"></param>
+    /// <returns></returns>
+    public async Task PublishMessageToChannel(string message)
+    {
+        var redisDb = _redis.GetDatabase();
+        await redisDb.PublishAsync(new RedisChannel("simple-chat-channel", RedisChannel.PatternMode.Literal), message); //// publish message through redis channel
+    }
+
+
     public async Task JoinSpecificChatRoomServerSide(UserConnection userConnection)
     {
         Console.WriteLine($"[ChatHub.JoinSpecificChatRoom] : joinded success with specific chatroom with ConnectionId : {Context.ConnectionId} \n" +

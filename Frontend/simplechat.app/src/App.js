@@ -5,10 +5,12 @@ import WaitingRoom from './components/WaitingRoom';
 import { HubConnectionBuilder, LogLevel } from '@microsoft/signalr';
 import { useState } from 'react';
 import ChatRoom from './components/Chatroom';
+import ChannelRoom from './components/Channelroom';
 
 function App() {
   const [connect, setConnect] = useState();
   const [messages, setMessages] = useState([]);
+  const [channelMessages, setChannelMessages] = useState([]);
 
   const joinChatRoom = async (username, chatroom) => {
     try {
@@ -26,6 +28,11 @@ function App() {
 
       connection.on("ReceiveSpecificMessageClientSide", (username, msg) =>{
         setMessages(messages => [...messages, {username, msg}])
+        console.log(`ReceiveSpecificMessage -> messages : ${messages}`)
+      })
+
+      connection.on("ReceiveChannelMessage", (sender, msg) =>{
+        setChannelMessages(messages => [...messages, {sender,msg}])
         console.log(`ReceiveSpecificMessage -> messages : ${messages}`)
       })
 
@@ -49,6 +56,14 @@ function App() {
       
     }
   }
+
+  const sendChannelMessage = async (message) =>{
+    try{
+      await connect.invoke("PublishMessageToChannel", message)
+    }catch(e){
+      console.log(e);    
+    }
+  }
   return (
     <div>
       <main>
@@ -62,7 +77,12 @@ function App() {
           </Row>
           { !connect 
             ? <WaitingRoom joinChatRoom={joinChatRoom}></WaitingRoom>
-            : <ChatRoom messages={messages} sendMessage={sendMessage}></ChatRoom>
+            : (
+              <div>
+                <ChatRoom messages={messages} sendMessage={sendMessage}></ChatRoom>
+                <ChannelRoom channelMessages={channelMessages} sendChannelMessage={sendChannelMessage}></ChannelRoom>
+              </div>
+              )
          }
           
         </Container>

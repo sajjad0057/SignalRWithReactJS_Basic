@@ -8,7 +8,7 @@ const MessageContainer = ({messages}) => {
         messages.map((msg, index) => 
           <table striped bordered>
             <tr key = {index}>
-              <td>{msg.msg} - {msg.username}</td>
+              <td>{msg.a_msg} - {msg.sender}</td>
             </tr>
           </table>)
       }

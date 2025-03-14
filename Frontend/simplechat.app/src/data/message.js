@@ -1,18 +1,4 @@
 export const messageData = {
-  "_id": {
-    "timestamp": 1741902672,
-    "creationTime": "2025-03-13T21:51:12Z"
-  },
-  "id": "67d35350fb30fce43f574417",
-  "_parent": {
-    "timestamp": 1741902672,
-    "creationTime": "2025-03-13T21:51:12Z"
-  },
-  "parent": "67d35350fb30fce43f574418",
-  "_channel": {
-    "timestamp": 1741902672,
-    "creationTime": "2025-03-13T21:51:12Z"
-  },
   "channel": "67d35350fb30fce43f574419",
   "created_at": "2025-03-13T14:45:30Z",
   "deleted_at": null,
@@ -24,7 +10,7 @@ export const messageData = {
   "sender_name": "John Doe",
   "reply_to": "Previous message reference",
   "recipient_type": "user",
-  "recipient_id": 789,
+  "recipient_id": 5110096,
   "recipient_mail": null,
   "recipient_name": "Jane Smith",
   "subject": "Meeting Reminder",

@@ -10,7 +10,7 @@ import { messageChannelData } from './data/message.channel';
 import { messageData } from './data/message';
 
 
-const token = "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNyc2Etc2hhMjU2IiwidHlwIjoiSldUIn0.eyJzZXNzaW9uIjoiMTc0ZGE3MzItZjc1Yy0xMWVmLTlkYjUtMzA4NWE5ZWUyNWQ0LWMwOWNhZjZkNGNhNTNjMWJlNmY3ZTlmOWJkYWIwNzEzIiwibmJmIjoxNzQwOTE2MDM3LCJleHAiOjE3NDM1MDgwMzcsImlzcyI6InF1aW5ib29rLmNvbSIsImF1ZCI6InF1aW5ib29rLmNvbSJ9.DcbDmsArrNm1vEfWNz5ArJJFnqI-aBubK1jUxjvv6t9TS0EZRL6PvtzIt7hzu1SHQWrierBHcIXuC4aW62oy32FgFEwKAUhECGseDca5ItUfaeCWG8JtNuL9ThMM-KgqKNVsFm1J0CMHSLnFNpMGri9UEanhY1mhelA3yY9uvYfStqXCM_KcYJv1QCJnbQaMyRkNSOyTyoubUMdbF_hbN3CVbcpG68Cte0vd5XW7KskFxmnClr7qOWwMNuJ960SZVKiGt9PoG3LF4r-mI29uw0R__Q_vx36PyqBuU4KTeqqVVr8lIMDZh3LE4kIuCHa-evKUtIpNIAiICVvHFfYN6w";
+const token = "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNyc2Etc2hhMjU2IiwidHlwIjoiSldUIn0.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjUxMTAwOTYiLCJzZXNzaW9uIjoiMmI3ZTRjY2ItMDBiNS0xMWYwLTlkYjUtMzA4NWE5ZWUyNWQ0LWMwOWNhZjZkNGNhNTNjMWJlNmY3ZTlmOWJkYWIwNzEzIiwibmJmIjoxNzQxOTQzODU3LCJleHAiOjE3NDQ1MzU4NTcsImlzcyI6InF1aW5ib29rLmNvbSIsImF1ZCI6InF1aW5ib29rLmNvbSJ9.R3NITpN0EPxqea7ykENu2PFpf0dpqn9zumVptfalrG1eWtrasrcnQD5AlA_2IttPx1WVP3Vhv4sC6-GPyuCFDyv7M03uYiwS65OxWIw7zwRCbsAZLa4EeQT27VdKjkAmeIU63TE6zougHXfVMxmbIrijLIGdU75T7HXl-x5Bx64zRE5HeEBOobn_LW7r9eAKz-q6_XUm25rbXHZ2zMTRw_y7KILBydk5SUYCsa4NQkCXMzkmg_72FvHqAInMafhGVTti89oHpU2ioaeV_4qn7OxMk4xm9aI3_Icmvi7oe81eIKjYRD91HH4aTy0v0gDV2X0mHFVLLc8mz2i3yr5jNw";
 
 function App() {
   const [connect, setConnect] = useState();
@@ -78,7 +78,7 @@ function App() {
 
   const sendChannelMessage = async (message) =>{
     try{
-      await connect.invoke("PublishMessageToChannel", messageData)
+      await connect.invoke("SendMessageToUser", messageData)
     }catch(e){
       console.log(e);    
     }
